@@ -19,7 +19,7 @@ bool mapa::CargarMapa(string &filename){
     string linea;
     unsigned int filas=0;
     unsigned int columnas=0;
-    archivo.open(filename, in);
+    archivo.open(filename, fstream::in);
     if(archivo.is_open()){
         while(getline(archivo,linea)){
             filas++;
@@ -29,11 +29,11 @@ bool mapa::CargarMapa(string &filename){
         }
         archivo.close();
 
-        ptrMatriz = new int* [filas];
-        archivo.open(filename, in);
+        ptrMatriz = new unsigned int* [filas];
+        archivo.open(filename, fstream::in);
         for(unsigned int i =0; i<filas; i++){
             getline(archivo, linea);
-            ptrMatriz[i]=new int [columnas];
+            ptrMatriz[i]=new unsigned int [columnas];
             for(unsigned int j=0; j<columnas;j++){
                 if(linea[j]=='#'){//muro
                     ptrMatriz[i][j]=0;
@@ -47,6 +47,7 @@ bool mapa::CargarMapa(string &filename){
                 else{//vacio
                     ptrMatriz[i][j]=3;
                 }
+            }
         }
         archivo.close();
         ancho=columnas;
@@ -54,4 +55,16 @@ bool mapa::CargarMapa(string &filename){
         return true;
     }
     return false;
+}
+
+unsigned int mapa::getAlto(){
+    return alto;
+}
+
+unsigned int mapa::getAncho(){
+    return ancho;
+}
+
+unsigned int** mapa::getptrMatriz(){
+    return ptrMatriz;
 }

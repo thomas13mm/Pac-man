@@ -15,7 +15,7 @@ public:
     void CambiarTipoCelda(int x, int y);
     unsigned int getAncho();
     unsigned int getAlto();
-    unsigned int** ptrMatriz();
+    unsigned int** getptrMatriz();
 
 private:
     unsigned int** ptrMatriz;
